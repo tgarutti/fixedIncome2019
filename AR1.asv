@@ -10,8 +10,12 @@ phi = nan(m,2);
 for tau = 1:m
     phi(tau,:) = [ones(1,T-1);X(tau,:)]'\Y(tau,:)';
     for s = 1:F
-       yield_forecasts(tau, s) = (1+sum(phi(tau,1).^[1:s]))+X(tau,end)*phi(tau,1)^s; 
+        step = steps_ahead(s);
+       yield_forecasts(tau, s) = phi(tau,1)*(1+sum(phi(tau,2).^[1:step-1]))+X(tau,end)*phi(tau,1)^step; 
     end
 end
+
+output = cell(1,1)
+output{1} = yield_forecasts;
 
 end
