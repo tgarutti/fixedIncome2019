@@ -17,11 +17,11 @@ dates = DATA{:,1};
 % zlabel('Yield (%)');
 
 %% DNS estimation (2-step), FULL SAMPLE
-[DNS] = DNS_2step(yields, lambda, tau, [1,2,6,12]);
+[DNS] = DNS_2step(yields, lambda, tau, [1]);
 
 %% Dynamic Nelson-Siegel data generating process
 R = 10;
-yieldsSim = dgpDNS(tau, lambda, [1;1;1], 0.01, DNS{2}, 0.1, T, R);
+yieldsSim = dgpDNS(tau, lambda, [1;1;1], 0.01, DNS{3}, 0.1, T, R);
 
 %% DNS estimation (2-step), MOVING WINDOW
 %Initialize moving window

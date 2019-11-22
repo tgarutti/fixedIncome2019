@@ -32,8 +32,8 @@ for f=1:F
 end
 
 output = cell(3,1);
-output{1} = beta;
-output{2} = phi;
-output{3} = yield_forecasts;
+output{1} = yield_forecasts;
+output{2} = beta;
+output{3} = phi;
 
 end
