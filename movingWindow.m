@@ -9,7 +9,7 @@ for s=1:S
 end
 
 %Forecast yields over moving window
-for i=1:(T-w)
+for i=1:(T-w+1)
     window = i:(i+w-1);
     yields_window = yields(:, window);
     
