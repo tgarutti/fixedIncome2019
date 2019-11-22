@@ -1,0 +1,14 @@
+function [ output ] = timeVaryingDNS( yields, lambda, tau, steps_ahead )
+%TIMEVARYINGDNS
+
+%Estimate betas given initial lambda
+outputDNS = DNS_2step(yields, lambda, tau, steps_ahead);
+betasF
+
+%Optimize lambda based on the estimated betas
+funErr = @(lambda_in)sum(sum((yields - [ones(size(tau)),...
+    (1-exp(-lambda_in*tau))./(lambda_in*tau),(1-exp(-lambda_in*tau))./...
+    (lambda_in*tau) - exp(-lambda_in*tau)] * betasFull).^2, 1), 2)/m/T;
+
+end
+

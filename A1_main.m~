@@ -35,4 +35,12 @@ mwDNS_DiLi = movingWindow(50, yields, lambda, tau, [1,6,12], @DNS_2step);
 
 %Forecast: Dynamic Nelson-Siegel (2-step) using lambda as min-correlation
 mwDNS_Corr = movingWindow(50, yields, minCorr(1), tau, [1,6,12], @DNS_2step);
+
+%Forecast: Dynamic Nelson-Siegel (2-step) with time-varying lambda
+mwDNS_timeVarying = movingWindow(50, yields, lambda, tau, [1,6,12], @timeVaryingDNS);
+
+%Forecast: AR(1)
 mwAR1 = movingWindow(50, yields, lambda, tau, [1,6,12], @AR1);
+
+%Forecast: Random walk
+mvRW = movingWindow(50, yields, lambda, tau, [1,6,12], @random_walk);
