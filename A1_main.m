@@ -22,8 +22,8 @@ dates = DATA{:,1};
 %% Dynamic Nelson-Siegel data generating process
 simulatedYields = dgpDNS(tau, lambda, [1;1;1], 0.01, DNS{3}, 0.1, T, 10);
 
-%% SimulationLambda
-lambda_in = [0.0001:0.0001:0.2];
+%% Simulation study lambda
+lambda_in = 0.0001:0.0001:0.2;
 [minCorr, maxB3, minMSE, simulations] = lambda_simStudy(yields, tau, ...
     lambda_in, false); %Set last variable to true for plots
 
