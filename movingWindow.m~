@@ -1,5 +1,13 @@
-function [ output_args ] = movingWindow( yields, lambda, tau, steps_ahead, FUN )
+function [ output ] = movingWindow(w, yields, lambda, tau, steps_ahead, FUN )
 %MOVINGWINDOW
-
-FUN(yields, lambda, tau, steps
+[m,T] = size(yields);
+s = numel(steps_ahead);
+output = cell(n+1,T-w);
+for i=1:(T-w)
+    window = i:(i+w-1);
+    yields_window = yields(:, window);
+    
+    model = FUN(yields, lambda, tau, steps_ahead);
+    forecasts = model{1};
+end
 end

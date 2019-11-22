@@ -24,12 +24,7 @@ R = 10;
 yieldsSim = dgpDNS(tau, lambda, [1;1;1], 0.01, DNS{3}, 0.1, T, R);
 
 %% DNS estimation (2-step), MOVING WINDOW
-%Initialize moving window
-w = 50;
-for i=1:(size(yields, 2)-w)
-    window = i:(i+w);
-    yields_window = yields(:, window);
-end
+mwDNS = movingWindow(48, yields, lambda, tau, [1,6,12], @DNS_2step);
 
 %% SimulationLambda
 lambda_in = [0.0001:0.0001:0.2];
