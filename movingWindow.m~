@@ -1,0 +1,5 @@
+function [ output_args ] = movingWindow( yields, lambda, tau, steps_ahead, FUN )
+%MOVINGWINDOW
+
+FUN(yields, lambda, tau, steps
+end

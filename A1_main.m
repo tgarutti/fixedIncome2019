@@ -17,7 +17,7 @@ dates = DATA{:,1};
 % zlabel('Yield (%)');
 
 %% DNS estimation (2-step), FULL SAMPLE
-[betasFull, phiFull, forecasts] = DNS_2step(yields, lambda, tau, [1,2,3,4]);
+[betasFull, phiFull, forecasts] = DNS_2step(yields, lambda, tau, [1,2,6,12]);
 
 %% Dynamic Nelson-Siegel data generating process
 R = 10;

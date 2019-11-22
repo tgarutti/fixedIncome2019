@@ -1,4 +1,4 @@
-function [ beta, phi, yield_forecasts ] = DNS_2step( yields, lambda, tau, steps_ahead )
+function [ output ] = DNS_2step( yields, lambda, tau, steps_ahead )
 %DNS_2STEP
 [m, T] = size(yields);
 
@@ -30,5 +30,10 @@ for f=1:F
     yield_forecasts(:,f) = B*b;
     beta_forecasts(:,f) = b;
 end
+
+output = cell(3,1);
+output{1} = beta;
+output{2} = phi;
+output{3} = yield_forecasts;
 
 end
