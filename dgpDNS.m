@@ -7,12 +7,13 @@ var2 = sigma2^2*eye(m);
 B = [ones(size(tau)), (1-exp(-lambda*tau))./(lambda*tau),...
     (1-exp(-lambda*tau))./(lambda*tau) - exp(-lambda*tau)];
 y = zeros(size(tau))';
-yieldsEst = nan(T, size(B,1) , R);
+yieldsEst = cell(R,1);
 
 % Run R simulations of the DNS dgp
 for r = 1:R
     %Set beta to initial value beta0
     beta = beta0;
+    yieldsEst{r} = zeros(size(B,1), T);
     for t = 1:T
         % Simulate error terms
          nu = mvnrnd(zeros(m, 1), sqrt(var2))';   % correlated nu
@@ -25,7 +26,7 @@ for r = 1:R
             var_y = 0.9*var_y;
         end
         beta = phi*[1; beta] + nu;
-        yieldsEst(t, :, r) = y;
+        yieldsEst{r}(:, t) = y;
     end
 end
 

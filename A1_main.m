@@ -20,8 +20,7 @@ dates = DATA{:,1};
 [DNS] = DNS_2step(yields, lambda, tau, [1]);
 
 %% Dynamic Nelson-Siegel data generating process
-R = 10;
-yieldsSim = dgpDNS(tau, lambda, [1;1;1], 0.01, DNS{3}, 0.1, T, R);
+simulatedYields = dgpDNS(tau, lambda, [1;1;1], 0.01, DNS{3}, 0.1, T, 10);
 
 %% SimulationLambda
 lambda_in = [0.0001:0.0001:0.2];
