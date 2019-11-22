@@ -15,7 +15,7 @@ for tau = 1:m
     end
 end
 
-output = cell(1,1)
+output = cell(1,1);
 output{1} = yield_forecasts;
 
 end

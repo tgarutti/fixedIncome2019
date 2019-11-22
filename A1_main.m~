@@ -23,10 +23,16 @@ dates = DATA{:,1};
 R = 10;
 yieldsSim = dgpDNS(tau, lambda, [1;1;1], 0.01, DNS{3}, 0.1, T, R);
 
-%% DNS estimation (2-step), MOVING WINDOW
-mwDNS = movingWindow(50, yields, lambda, tau, [1,6,12], @DNS_2step);
-
 %% SimulationLambda
 lambda_in = [0.0001:0.0001:0.2];
 [minCorr, maxB3, minMSE, simulations] = lambda_simStudy(yields, tau, ...
     lambda_in, false); %Set last variable to true for plots
+
+%% DNS estimation (2-step), MOVING WINDOW
+
+%Forecast: Dynamic Nelson-Siegel (2-step) using lambda = 0.0609
+mwDNS_DiLi = movingWindow(50, yields, lambda, tau, [1,6,12], @DNS_2step);
+
+%Forecast: Dynamic Nelson-Siegel (2-step) using lambda as min-correlation
+mwDNS_Corr = movingWindow(50, yields, minCorr(1), tau, [1,6,12], @DNS_2step);
+mwAR1 = movingWindow(50, yields, lambda, tau, [1,6,12], @AR1);
