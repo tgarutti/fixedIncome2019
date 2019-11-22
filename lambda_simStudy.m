@@ -1,8 +1,8 @@
 function [ minCorr, maxB3, minMSE, simulations ] = lambda_simStudy( yields, tau, lambda_in, plotBool)
 %LAMBDA_SIMSTUDY
 [m,T] = size(yields);
-[betasFull, ~, ~] = DNS_2step(yields, 0.0609, tau, []);
-
+[DNS] = DNS_2step(yields, 0.0609, tau, []);
+betasFull = DNS{1};
 %Optimize lambda for min correlation, min MSE and max curvature loading
 funCorr = @(lambda_in)abs(corr((1-exp(-tau*lambda_in))./(tau*lambda_in),...
     (1-exp(-tau*lambda_in))./(tau*lambda_in) - exp(-tau*lambda_in)));
