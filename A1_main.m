@@ -43,19 +43,24 @@ mwDNS_Corr = movingWindow(mWindow, yields, minCorr(1), tau, [1,6,12], @DNS_2step
 mwDNS_timeVarying = movingWindow(mWindow, yields, lambda, tau, [1,6,12],...
     @timeVaryingDNS);
 
+%Forecast: Random walk
+mwRW = movingWindow(mWindow, yields, lambda, tau, [1,6,12], @random_walk);
+
 %Forecast: AR(1)
 mwAR1 = movingWindow(mWindow, yields, lambda, tau, [1,6,12], @AR1);
 
 %Forecast: VAR(1)
 mwVAR1 = movingWindow(mWindow, yields, lambda, tau, [1,6,12], @VAR1);
 
-%Forecast: Random walk
-mwRW = movingWindow(mWindow, yields, lambda, tau, [1,6,12], @random_walk);
+%Forecast: ECM(1)
+mwECM = movingWindow(mWindow, yields, lambda, tau, [1,6,12], @ECM);
+
 
 %% Estimation evaluation
 
 % RMSFE: 1 month forecast length
-RMSFE_1m = [mwRW{end}(:,1), mwAR1{end}(:,1), mwVAR1{end}(:,1), mwDNS_DiLi{end}(:,1),mwDNS_Corr{end}(:,1), mwDNS_timeVarying{end}(:,1)];
+RMSFE_1m = [mwRW{end}(:,1), mwAR1{end}(:,1), mwVAR1{end}(:,1), mwECM{end}(:,1), ...
+    mwDNS_DiLi{end}(:,1), mwDNS_Corr{end}(:,1), mwDNS_timeVarying{end}(:,1)];
 
 % RMSFE: 6 month forecast length
 
