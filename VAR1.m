@@ -8,7 +8,7 @@ yield_forecasts = nan(m,F);
 % estimate VAR(1) parameters
 Y = yields(:,2:end);
 X = [ones(1,T-1);yields(:,1:end-1)];
-PHI = Y*X'*inv(X*X')
+PHI = Y*X'*inv(X*X');
 
 % evaluating forecasts for different lengths
 for f=1:F
