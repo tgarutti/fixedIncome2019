@@ -18,7 +18,7 @@ mWindow = 75;
 % zlabel('Yield (%)');
 
 %% Stationarity and Cointegration tests
-preTests = preTestYields(yields, 5); % ADF with 5 lags
+preTests = preTestYields(yields, 5); % 5 lags
 
 %% DNS estimation (2-step), FULL SAMPLE
 [DNS] = DNS_2step(yields, lambda, tau, [1]);
@@ -54,9 +54,9 @@ mwRW = movingWindow(mWindow, yields, lambda, tau, [1,6,12], @random_walk);
 
 %% Estimation evaluation
 
-% RMSFE - 1 month forecast length
+% RMSFE: 1 month forecast length
 RMSFE_1m = [mwRW{end}(:,1), mwAR1{end}(:,1), mwVAR1{end}(:,1), mwDNS_DiLi{end}(:,1),mwDNS_Corr{end}(:,1), mwDNS_timeVarying{end}(:,1)];
 
-% RMSFE - 6 month forecast length
+% RMSFE: 6 month forecast length
 
-% RMSFE - 12 month forecast length
+% RMSFE: 12 month forecast length
