@@ -7,11 +7,12 @@ X = yields(:,1:end-1);
 Y = yields(:,2:end);
 phi = nan(m,2);
 
+% make estimations for every maturity and forecast length
 for tau = 1:m
     phi(tau,:) = [ones(1,T-1);X(tau,:)]'\Y(tau,:)';
     for s = 1:F
         step = steps_ahead(s);
-       yield_forecasts(tau, s) = phi(tau,1)*(1+sum(phi(tau,2).^[1:step-1]))+X(tau,end)*phi(tau,1)^step; 
+        yield_forecasts(tau, s) = phi(tau,1)*(1+sum(phi(tau,2).^[1:step-1]))+X(tau,end)*phi(tau,1)^step;
     end
 end
 
