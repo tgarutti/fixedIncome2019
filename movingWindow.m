@@ -28,7 +28,7 @@ for s=1:S
     actuals = yields(:,(w+step):end);
     forecast_s = forecasts{s}(:,1:(end-step));
     RMSFE(:,s) = mean(sqrt((actuals-forecast_s).^2),2);
-%     MSFE(:,s) = mean((actuals-forecast_s).^2,2);
+    %     MSFE(:,s) = mean((actuals-forecast_s).^2,2);
     output{s} = forecasts{s};
 end
 

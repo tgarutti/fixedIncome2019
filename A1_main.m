@@ -1,6 +1,6 @@
 %% Assignment 1 - Main
 
-%% Get data 
+%% Get data
 clc
 clear
 DATA = readtable('FinalDataMonthly10Y.csv');
@@ -55,11 +55,13 @@ mwVAR1 = movingWindow(mWindow, yields, lambda, tau, [1,6,12], @VAR1);
 %Forecast: ECM(1)
 mwECM = movingWindow(mWindow, yields, lambda, tau, [1,6,12], @ECM);
 
-
+%Forecast: VECM(1)
+mwVECM = movingWindow(mWindow, yields, lambda, tau, [1,6,12], @VECM);
 %% Estimation evaluation
 
 % RMSFE: 1 month forecast length
-RMSFE_1m = [mwRW{end}(:,1), mwAR1{end}(:,1), mwVAR1{end}(:,1), mwECM{end}(:,1), ...
+RMSFE_1m = [mwRW{end}(:,1), mwAR1{end}(:,1), mwVAR1{end}(:,1), ...
+    mwECM{end}(:,1), mwVECM{end}(:,1), ...
     mwDNS_DiLi{end}(:,1), mwDNS_Corr{end}(:,1), mwDNS_timeVarying{end}(:,1)];
 
 % RMSFE: 6 month forecast length
