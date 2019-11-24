@@ -57,6 +57,7 @@ mwECM = movingWindow(mWindow, yields, lambda, tau, [1,6,12], @ECM);
 
 %Forecast: VECM(1)
 mwVECM = movingWindow(mWindow, yields, lambda, tau, [1,6,12], @VECM);
+
 %% Estimation evaluation
 
 % RMSFE: 1 month forecast length
@@ -65,5 +66,11 @@ RMSFE_1m = [mwRW{end}(:,1), mwAR1{end}(:,1), mwVAR1{end}(:,1), ...
     mwDNS_DiLi{end}(:,1), mwDNS_Corr{end}(:,1), mwDNS_timeVarying{end}(:,1)];
 
 % RMSFE: 6 month forecast length
+RMSFE_6m = [mwRW{end}(:,2), mwAR1{end}(:,2), mwVAR1{end}(:,2), ...
+    mwECM{end}(:,2), mwVECM{end}(:,2), ...
+    mwDNS_DiLi{end}(:,2), mwDNS_Corr{end}(:,2), mwDNS_timeVarying{end}(:,2)];
 
 % RMSFE: 12 month forecast length
+RMSFE_12m = [mwRW{end}(:,3), mwAR1{end}(:,3), mwVAR1{end}(:,3), ...
+    mwECM{end}(:,3), mwVECM{end}(:,3), ...
+    mwDNS_DiLi{end}(:,3), mwDNS_Corr{end}(:,3), mwDNS_timeVarying{end}(:,3)];
