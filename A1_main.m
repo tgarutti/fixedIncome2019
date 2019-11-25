@@ -78,7 +78,5 @@ RMSFE_12m = [mwRW{end}(:,3), mwAR1{end}(:,3), mwVAR1{end}(:,3), ...
 
 %% Model evaluation for simulated yields
 
-
-
-DNS_DiLi_sim = evaluateSimulations( simulatedYields, lambda, tau, [1,6,12], @DNS_2step );
-DNS_Corr_sim = evaluateSimulations( simulatedYields, minCorr(1), tau, [1,6,12], @DNS_2step );
+DNS_sim = evaluateSimulations( simulatedYields, lambda, tau, [1,6,12],...
+    @DNS_2step, minCorr(1), @timeVaryingDNS);

@@ -9,12 +9,13 @@ mi = min(yields')';
 ma = max(yields')';
 
 % Autocorrelations
-lags = [1,12,30];
-ac = zeros(m,30);
-% for i=1:m
-%     ac(i,:) = autocorr(yields(i,:), 30)';
-% end
-a1 = autocorr(yields(1,:),30);
+lags = [1,12];
+ac = zeros(m,lags(end)+1);
+for i=1:m
+    ac(i,:) = autocorr(yields(i,:), lags(end))';
+end
+ac = ac(:,1+lags);
 
+output = [mu, std_dev, mi, ma, ac];
 end
 
