@@ -10,6 +10,7 @@ yields = DATA{:,2:end}';
 dates = DATA{:,1};
 [m,T] = size(yields);
 mWindow = 75;
+R = 100;
 
 %% Plot yield curve
 % surf(dates,tau,yields','FaceAlpha',0.75)
@@ -24,7 +25,7 @@ preTests = preTestYields(yields, 5); % 5 lags
 [DNS] = DNS_2step(yields, lambda, tau, [1]);
 
 %% Dynamic Nelson-Siegel data generating process
-simulatedYields = dgpDNS(tau, lambda, [1;1;1], 0.01, DNS{3}, 0.1, T, 10);
+simulatedYields = dgpDNS(tau, lambda, [1;1;1], 0.01, DNS{3}, 0.1, T, R);
 
 %% Simulation study lambda
 lambda_in = 0.0001:0.0001:0.2;
@@ -74,3 +75,10 @@ RMSFE_6m = [mwRW{end}(:,2), mwAR1{end}(:,2), mwVAR1{end}(:,2), ...
 RMSFE_12m = [mwRW{end}(:,3), mwAR1{end}(:,3), mwVAR1{end}(:,3), ...
     mwECM{end}(:,3), mwVECM{end}(:,3), ...
     mwDNS_DiLi{end}(:,3), mwDNS_Corr{end}(:,3), mwDNS_timeVarying{end}(:,3)];
+
+%% Model evaluation for simulated yields
+
+
+
+DNS_DiLi_sim = evaluateSimulations( simulatedYields, lambda, tau, [1,6,12], @DNS_2step );
+DNS_Corr_sim = evaluateSimulations( simulatedYields, minCorr(1), tau, [1,6,12], @DNS_2step );
