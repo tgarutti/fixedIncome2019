@@ -53,15 +53,16 @@ simulations = [corrB2B3', B3_30', MSE'];
 
 %Plot simulation study
 if (plotBool == true)
-    plot(lambda_in, corrB2B3);
-    ylabel('Correlation between slope and curvature loadings');
+    figure(1)
+    plot(lambda_in, corrB2B3); %Correlation between slope and curvature loading
+    ylabel('Correlation');
     xlabel('Lambda');
-    hold on 
-    plot(lambda_in, B3_30);
-    ylabel('Value of curvature loading');
+    figure(2)
+    plot(lambda_in, B3_30, 'color',[0.8500, 0.3250, 0.0980] );
+    ylabel('Curvature loading');
     xlabel('Lambda');
-    hold on 
-    plot(lambda_in, MSE);
+    figure(3)
+    plot(lambda_in, MSE, 'color', [0.4940, 0.1840, 0.5560]);
     ylabel('In-sample MSE');
     xlabel('Lambda');
 end
