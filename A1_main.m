@@ -9,7 +9,7 @@ lambda = 0.0609; %Diebold-Li (2006)
 yields = DATA{:,2:end}';
 dates = DATA{:,1};
 [m,T] = size(yields);
-mWindow = 75;
+mWindow = 48; %In-sample of four years / 40% of the empirical data
 R = 100;
 
 %% Plot yield curve
@@ -59,7 +59,7 @@ mwECM = movingWindow(mWindow, yields, lambda, tau, [1,6,12], @ECM);
 %Forecast: VECM(1)
 mwVECM = movingWindow(mWindow, yields, lambda, tau, [1,6,12], @VECM);
 
-%% Estimation evaluation
+%% Estimation results
 
 % RMSFE: 1 month forecast length
 RMSFE_1m = [mwRW{end}(:,1), mwAR1{end}(:,1), mwVAR1{end}(:,1), ...
