@@ -16,7 +16,7 @@ for r = 1:R
     yieldsEst{r} = zeros(size(B,1), T);
     for t = 1:T
         % Simulate error terms
-         nu = mvnrnd(zeros(m, 1), sqrt(var2))';   % correlated nu
+         nu = mvnrnd(zeros(m, 1), var2)';   % correlated nu
 
         % Evaluate DNS dynamics
         var_y = var1;

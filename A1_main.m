@@ -14,25 +14,27 @@ mWindow = 48; %In-sample of four years / 40% of the empirical data
 R = 100;
 
 %% Plot yield curve
-% surf(dates,tau,yields','FaceAlpha',0.75)
-% ylabel('Maturity (years)');
-% xlabel('Time');
-% zlabel('Yield (%)');
+surf(dates,tau,yields,'FaceAlpha',0.75)
+ylabel('Maturity (years)');
+xlabel('Time');
+zlabel('Yield (%)');
 
 %% Stationarity and Cointegration tests
 preTests = preTestYields(yields, 5); % 5 lags
-
-%% DNS estimation (2-step), FULL SAMPLE
-DNS = DNS_2step(yields, lambda, tau, 1);
-plotDNS(DNS, dates);
-
-%% Dynamic Nelson-Siegel data generating process
-simulatedYields = dgpDNS(tau, lambda, [1;1;1], 0.01, DNS{3}, 0.1, T, R);
 
 %% Simulation study lambda
 lambda_in = 0.0001:0.0001:0.2;
 [minCorr, maxB3, minMSE, ~] = lambda_simStudy(yields, tau, ...
     lambda_in, false); %Set last variable to true for plots
+
+%% DNS estimation (2-step), FULL SAMPLE
+DNS = DNS_2step(yields, lambda, tau, 1);
+
+DNSCorr = DNS_2step(yields, minCorr(1), tau, 1);
+plotDNS(DNSCorr, dates);
+
+%% Dynamic Nelson-Siegel data generating process
+simulatedYields = dgpDNS(tau, lambda, [1;1;1], 0.01, DNS{3}, 0.1, T, R);
 
 %% DNS estimation (2-step), MOVING WINDOW
 
