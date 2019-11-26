@@ -3,7 +3,8 @@
 %% Get data
 clc
 clear
-DATA = readtable('FinalDataMonthly10Y.csv');
+DATA = readtable('FinalDataMonthly10Y.csv', 'Format',...
+    '%{dd/MM/yyyy}D %f %f %f %f %f %f %f %f %f %f %f %f');
 tau = 12*[3/12, 6/12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]';
 lambda = 0.0609; %Diebold-Li (2006)
 yields = DATA{:,2:end}';
@@ -87,4 +88,3 @@ meanStats = mean(DNS_sim{1},3);
 %% Robustness check for simulation parameters
 t_stats = robustnessSim([tau, minCorr(1), {[1;1;1]}, 0.01, DNS{3}, 0.1,...
     T, R], @dgpDNS, @DNS_2step, 10);
-
