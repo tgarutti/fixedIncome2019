@@ -63,7 +63,5 @@ if plot == true
     xlabel('\Phi_{3,3}');
 end
     
-            
-end
 end
 
