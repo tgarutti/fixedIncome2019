@@ -89,4 +89,4 @@ meanStats = mean(DNS_sim{1},3);
 
 %% Robustness check for simulation parameters
 t_stats = robustnessSim([tau, minCorr(1), {[1;1;1]}, 0.01, DNS{3}, 0.1,...
-    T, R], @dgpDNS, @DNS_2step, 10);
+    T, R], @dgpDNS, @DNS_2step, 10, true);
