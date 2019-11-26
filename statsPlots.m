@@ -45,28 +45,40 @@ if plot == 1
 elseif plot == 2
     subplot(3,4,1);
     histogram(sims{3}(1,1,:),R/4);
+    xlabel('c_1');
     subplot(3,4,2);
     histogram(sims{3}(1,2,:),R/4);
+    xlabel('\Phi_{1,1}');
     subplot(3,4,3);
     histogram(sims{3}(1,3,:),R/4);
+    xlabel('\Phi_{1,2}');
     subplot(3,4,4);
     histogram(sims{3}(1,4,:),R/4);
+    xlabel('\Phi_{1,3}');
     subplot(3,4,5);
     histogram(sims{3}(2,1,:),R/4);
+    xlabel('c_2');
     subplot(3,4,6);
     histogram(sims{3}(2,2,:),R/4);
+    xlabel('\Phi_{2,1}');
     subplot(3,4,7);
     histogram(sims{3}(2,3,:),R/4);
+    xlabel('\Phi_{2,2}');
     subplot(3,4,8);
     histogram(sims{3}(2,4,:),R/4);
+    xlabel('\Phi_{2,3}');
     subplot(3,4,9);
     histogram(sims{3}(3,1,:),R/4);
+    xlabel('c_3');
     subplot(3,4,10);
     histogram(sims{3}(3,2,:),R/4);
+    xlabel('\Phi_{3,1}');
     subplot(3,4,11);
     histogram(sims{3}(3,3,:),R/4);
+    xlabel('\Phi_{3,2}');
     subplot(3,4,12);
     histogram(sims{3}(3,4,:),R/4);
+    xlabel('\Phi_{3,3}');
 elseif plot == 0
     
 end

@@ -23,6 +23,7 @@ preTests = preTestYields(yields, 5); % 5 lags
 
 %% DNS estimation (2-step), FULL SAMPLE
 DNS = DNS_2step(yields, lambda, tau, 1);
+plotDNS(DNS, dates);
 
 %% Dynamic Nelson-Siegel data generating process
 simulatedYields = dgpDNS(tau, lambda, [1;1;1], 0.01, DNS{3}, 0.1, T, R);
@@ -81,7 +82,7 @@ RMSFE_12m = [mwRW{end}(:,3), mwAR1{end}(:,3), mwVAR1{end}(:,3), ...
 DNS_sim = evaluateSimulations( simulatedYields, minCorr(1), tau, [1,6,12],...
     @DNS_2step);
 meanStats = mean(DNS_sim{1},3);
-[statsBeta, statsPhi] = statsPlots(DNS_sim, 2);
+[statsBeta, statsPhi] = statsPlots(DNS_sim, 0);
 
 %% Robustness check for simulation parameters
 t_stats = robustnessSim([tau, minCorr(1), {[1;1;1]}, 0.01, DNS{3}, 0.1,...
