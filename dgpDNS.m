@@ -1,9 +1,8 @@
-function [ yieldsEst ] = dgpDNS( tau, lambda, beta0, sigma1, phi, sigma2, T, R )
+function [ yieldsEst ] = dgpDNS( tau, lambda, beta0, var1, phi, var2, T, R )
 %DGPDNS
 %Initialize variables
 [m,n] = size(phi);
-var1 = sigma1^2;
-var2 = sigma2^2*eye(m);
+var2 = var2*eye(m);
 B = [ones(size(tau)), (1-exp(-lambda*tau))./(lambda*tau),...
     (1-exp(-lambda*tau))./(lambda*tau) - exp(-lambda*tau)];
 y = zeros(size(tau))';
